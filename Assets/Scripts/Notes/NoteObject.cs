@@ -39,12 +39,6 @@ namespace MIDI.Note
                 this.gameObject.SetActive(false);
             }
         }
-        public void InitNoteObject(Color color,Transform target,AudioClip audioClip)
-        {
-            _noteImage.color = color;
-            _target = target;
-            _soundEffect = audioClip;
-        }
         private void MoveToTarget()
         {
             if (_target == null)
@@ -57,6 +51,12 @@ namespace MIDI.Note
             {
                 this.gameObject.SetActive(false);
             });
+        }
+        public void InitNoteObject(Color color,Transform target,AudioClip audioClip)
+        {
+            _noteImage.color = color;
+            _target = target;
+            _soundEffect = audioClip;
         }
     }
 }

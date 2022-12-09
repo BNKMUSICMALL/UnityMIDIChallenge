@@ -45,6 +45,20 @@ namespace MIDI.Note
                 StopPlay();
             }
         }
+        private void SpawnNote(float timeStamp)
+        {
+            NoteObject note = Instantiate(_noteObjectPrefab,this.transform);
+            note.transform.localPosition = new Vector3(0,300,0);
+            note.InitNoteObject(_noteColor,_targetNote,_soundNoteEffect);
+            note.onNoteHit += OnNoteHit;
+            note.gameObject.SetActive(false);
+            note.name = $"{this.gameObject.name}_{timeStamp}";
+            _notes.Add(note);
+        }
+        private void OnNoteHit()
+        {
+            _lightLinear.DOFade(100,0.2f).OnComplete(() => _lightLinear.DOFade(0,0.2f));
+        }
         public void StartPlay()
         {
             _isPlay = true;
@@ -67,20 +81,6 @@ namespace MIDI.Note
                 }
                 SpawnNote((float)_tempTimeStamp);
             }
-        }
-        private void SpawnNote(float timeStamp)
-        {
-            NoteObject note = Instantiate(_noteObjectPrefab,this.transform);
-            note.transform.localPosition = new Vector3(0,300,0);
-            note.InitNoteObject(_noteColor,_targetNote,_soundNoteEffect);
-            note.onNoteHit += OnNoteHit;
-            note.gameObject.SetActive(false);
-            note.name = $"{this.gameObject.name}_{timeStamp}";
-            _notes.Add(note);
-        }
-        private void OnNoteHit()
-        {
-            _lightLinear.DOFade(100,0.2f).OnComplete(() => _lightLinear.DOFade(0,0.2f));
         }
     }
 }

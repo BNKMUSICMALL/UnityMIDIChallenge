@@ -5,26 +5,11 @@ namespace MIDI.Manager
 {
     public class InputManager : MonoBehaviour
     {
-        #region Singleton
-        private static InputManager _instance;
-        public static InputManager Instance 
-        { 
-            get 
-            {
-                if (_instance == null)
-                {
-                    Debug.LogWarning("Input Manager Is Null");
-                }
-                return _instance;
-            }
-        }
-        #endregion
-        [SerializeField] private KeyObject[] _buttonUIs;
+        [SerializeField] private KeyObject[] _keyObjects;
         private PlayerInput _playerInput;
         private GameManager _gameManager;
         private void Awake()
         {
-            _instance = this;
             _gameManager = GameManager.Instance;
             _playerInput = new PlayerInput();
         }
@@ -59,29 +44,29 @@ namespace MIDI.Manager
         }
         private void AReadInput(InputAction.CallbackContext context)
         {
-            _buttonUIs[0].KeyPress();
+            _keyObjects[0].KeyPress();
         }
         private void SReadInput(InputAction.CallbackContext context)
         {
-            _buttonUIs[1].KeyPress();
+            _keyObjects[1].KeyPress();
         }
         private void DReadInput(InputAction.CallbackContext context)
         {
-            _buttonUIs[2].KeyPress();
+            _keyObjects[2].KeyPress();
         }
         private void FReadInput(InputAction.CallbackContext context)
         {
-            _buttonUIs[3].KeyPress();
+            _keyObjects[3].KeyPress();
         }
 
         private void GReadInput(InputAction.CallbackContext context)
         {
-            _buttonUIs[4].KeyPress();
+            _keyObjects[4].KeyPress();
         }
 
         private void HReadInput(InputAction.CallbackContext context)
         {
-            _buttonUIs[5].KeyPress();
+            _keyObjects[5].KeyPress();
         }
     }
 }

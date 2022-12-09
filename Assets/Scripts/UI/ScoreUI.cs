@@ -17,12 +17,6 @@ namespace MIDI.UI
 
         private Tween _tweenScore;
 
-        public void IncreasesScore(int value)
-        {
-            _scoreValue += value;
-            _valueText.text = _scoreValue.ToString();
-            ScoreAnimation();
-        }
         private void ScoreAnimation()
         {
             _tweenScore.Kill();
@@ -30,6 +24,12 @@ namespace MIDI.UI
             {
                 _valueText.transform.DOScale(Vector3.one,_duration/4);
             });
+        }
+        public void IncreasesScore(int value)
+        {
+            _scoreValue += value;
+            _valueText.text = _scoreValue.ToString();
+            ScoreAnimation();
         }
         public void ReStartScore()
         {

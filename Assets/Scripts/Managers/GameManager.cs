@@ -54,16 +54,6 @@ namespace MIDI.Manager
         {
             StartCoroutine(PlayGame_Coroutine());
         }
-        private IEnumerator PlayGame_Coroutine()
-        {
-            yield return new WaitForSeconds(1f);
-            _soundBGM.Play();
-            foreach (Lane lane in _lanes)
-            {
-                lane.StartPlay();
-            }
-            StartCoroutine(ReStart_Coroutine());
-    }
         private void GetData()
         {
             _midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + _fileName);
@@ -78,7 +68,21 @@ namespace MIDI.Manager
                 }
             }
         }
-        
+        private IEnumerator PlayGame_Coroutine()
+        {
+            yield return new WaitForSeconds(1f);
+            _soundBGM.Play();
+            foreach (Lane lane in _lanes)
+            {
+                lane.StartPlay();
+            }
+            StartCoroutine(ReStart_Coroutine());
+        }
+        private IEnumerator ReStart_Coroutine()
+        {
+            yield return new WaitForSeconds(_soundBGM.clip.length + 2f);
+            _restartPanel.SetActive(true);
+        }
         public void ReStart()
         {
             if (!_restartPanel.activeInHierarchy)
@@ -90,11 +94,6 @@ namespace MIDI.Manager
             
             _restartPanel.SetActive(false);
             _scoreUI.ReStartScore();
-        }
-        private IEnumerator ReStart_Coroutine()
-        {
-            yield return new WaitForSeconds(_soundBGM.clip.length + 2f);
-            _restartPanel.SetActive(true);
         }
         public void PlaySoundEffect(AudioClip audioClip)
         {

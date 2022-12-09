@@ -11,10 +11,6 @@ namespace MIDI.Note
         [SerializeField] private Color _colorPress;
         [SerializeField] private float _timePress;
 
-        public void KeyPress()
-        {
-            StartCoroutine(KeyPress_Coroutine());
-        }
         private IEnumerator KeyPress_Coroutine()
         {
             _bgImage.color = _colorPress;
@@ -24,6 +20,10 @@ namespace MIDI.Note
             _bgImage.color = _colorPrimary;
             _boxCollider2D.enabled = false;
             _boxCollider2D.isTrigger = false;
+        }
+        public void KeyPress()
+        {
+            StartCoroutine(KeyPress_Coroutine());
         }
     }
 }
