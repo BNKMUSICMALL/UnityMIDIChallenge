@@ -71,3 +71,4 @@ This is the test of **Unity Developer** from **Mutex Team**. Test duration is **
 Submit your test by creating PR to this repository
 <!-- replace your link here -->
 UML diagram: [link](https://github.com/bnkmutech/UnityMIDIChallenge)
+![MIDI Diagram drawio](https://user-images.githubusercontent.com/77877339/206758540-178bec1e-d384-4137-83e9-858180e14585.png)
